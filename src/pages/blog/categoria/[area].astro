@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import CardPost from '../../../components/CardPost.astro';
+import BannerMaterial from '../../../components/BannerMaterial.astro';
+import { getCollection } from 'astro:content';
+import { SITE_INFO } from '../../../lib/constants';
+
+export async function getStaticPaths() {
+  const categories = ['obesidade', 'diabetes', 'tireoide', 'menopausa', 'colesterol', 'consulta'];
+  return categories.map((cat) => ({
+    params: { area: cat }
+  }));
+}
+
+const { area } = Astro.params;
+
+const categoryLabels: Record<string, string> = {
+  obesidade: 'Obesidade',
+  diabetes: 'Diabetes',
+  tireoide: 'Tireoide',
+  menopausa: 'Menopausa',
+  colesterol: 'Colesterol',
+  consulta: 'Consulta Médica'
+};
+
+const currentLabel = categoryLabels[area] || area;
+
+const allPosts = await getCollection('blog');
+const filteredPosts = allPosts
+  .filter((post) => post.data.category === area)
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+
+const categories = [
+  { label: 'Todos', href: '/blog' },
+  { label: 'Obesidade', href: '/blog/categoria/obesidade' },
+  { label: 'Diabetes', href: '/blog/categoria/diabetes' },
+  { label: 'Tireoide', href: '/blog/categoria/tireoide' },
+  { label: 'Menopausa', href: '/blog/categoria/menopausa' },
+  { label: 'Colesterol', href: '/blog/categoria/colesterol' },
+  { label: 'Consulta', href: '/blog/categoria/consulta' }
+];
+---
+<BaseLayout
+  title={`Artigos sobre ${currentLabel} | Dra. Ana Carolina Mamede`}
+  description={`Confira artigos e orientações médicas sobre ${currentLabel.toLowerCase()} escritos pela Dra. Ana Carolina Mamede.`}
+  canonical={`${SITE_INFO.domain}/blog/categoria/${area}`}
+  waOrigin="blog"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb
+        items={[
+          { label: 'Blog', href: '/blog' },
+          { label: currentLabel }
+        ]}
+      />
+      <span class="eyebrow">Categoria</span>
+      <h1 style="margin: 14px 0 14px; font-size: clamp(32px, 4.5vw, 44px);">
+        Artigos sobre {currentLabel}
+      </h1>
+      <p class="lead" style="max-width: 700px;">
+        Conteúdos educativos com embasamento científico para esclarecer dúvidas e guiar seu cuidado de saúde.
+      </p>
+
+      <div class="filters">
+        {categories.map((cat) => (
+          <a
+            href={cat.href}
+            class={`filter ${cat.href.endsWith(area) ? 'on' : ''}`}
+          >
+            {cat.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {filteredPosts.length > 0 ? (
+        <div class="posts">
+          {filteredPosts.map((post) => (
+            <CardPost
+              title={post.data.title}
+              category={post.data.category}
+              description={post.data.description}
+              readingTime={post.data.readingTime}
+              href={`/blog/${post.id}`}
+              image={post.data.image}
+              reviewedBy={post.data.reviewedBy}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="center" style="padding: 48px 0;">
+          <p class="lead">Nenhum artigo encontrado nesta categoria no momento.</p>
+          <a class="btn" href="/blog" style="margin-top: 20px;">Ver todos os artigos</a>
+        </div>
+      )}
+
+      <div style="margin-top: 64px;">
+        <BannerMaterial compact={true} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CardPost from '../../components/CardPost.astro';
+import BannerMaterial from '../../components/BannerMaterial.astro';
+import { getCollection } from 'astro:content';
+import { SITE_INFO } from '../../lib/constants';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+const featuredPost = sortedPosts[0];
+const otherPosts = sortedPosts.slice(1);
+
+const categories = [
+  { label: 'Todos', href: '/blog', active: true },
+  { label: 'Obesidade', href: '/blog/categoria/obesidade' },
+  { label: 'Diabetes', href: '/blog/categoria/diabetes' },
+  { label: 'Tireoide', href: '/blog/categoria/tireoide' },
+  { label: 'Menopausa', href: '/blog/categoria/menopausa' },
+  { label: 'Colesterol', href: '/blog/categoria/colesterol' },
+  { label: 'Consulta', href: '/blog/categoria/consulta' }
+];
+---
+<BaseLayout
+  title="Blog sobre Endocrinologia e Metabolismo | Dra. Ana Carolina Mamede"
+  description="Artigos sobre obesidade, diabetes, tireoide, menopausa e colesterol escritos e revisados por médica endocrinologista."
+  canonical={`${SITE_INFO.domain}/blog`}
+  waOrigin="blog"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb items={[{ label: 'Blog' }]} />
+      <span class="eyebrow">Blog</span>
+      <h1 style="margin: 14px 0 14px; font-size: clamp(32px, 4.5vw, 44px);">
+        Conteúdo para entender o seu corpo
+      </h1>
+      <p class="lead" style="max-width: 700px;">
+        Artigos sobre hormônios e metabolismo escritos e revisados pela Dra. Ana Carolina Mamede, médica endocrinologista.
+      </p>
+
+      <div class="search" role="search">
+        <span>⌕</span>
+        <input
+          type="text"
+          id="blogSearchInput"
+          placeholder="Buscar por tema: tireoide, menopausa, colesterol..."
+          aria-label="Buscar artigos"
+        />
+      </div>
+
+      <div class="filters">
+        {categories.map((cat) => (
+          <a
+            href={cat.href}
+            class={`filter ${cat.active ? 'on' : ''}`}
+          >
+            {cat.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 64px;">
+    <div class="wrap">
+      <!-- Artigo em destaque -->
+      {featuredPost && (
+        <div class="featured">
+          <div class="img-ph">
+            <span>Em destaque</span>
+          </div>
+          <div class="b">
+            <span class="cat" style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra);">
+              Em destaque · {featuredPost.data.category}
+            </span>
+            <h2 style="font-size: clamp(24px, 3vw, 30px);">
+              {featuredPost.data.title}
+            </h2>
+            <p class="muted">
+              {featuredPost.data.description}
+            </p>
+            <a class="btn" style="align-self: flex-start;" href={`/blog/${featuredPost.id}`}>
+              Ler artigo
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Grade de posts -->
+      <div class="posts" id="postsGrid" style="margin-top: 40px;">
+        {otherPosts.map((post) => (
+          <div class="post-item" data-title={post.data.title.toLowerCase()} data-desc={post.data.description.toLowerCase()}>
+            <CardPost
+              title={post.data.title}
+              category={post.data.category}
+              description={post.data.description}
+              readingTime={post.data.readingTime}
+              href={`/blog/${post.id}`}
+              image={post.data.image}
+              reviewedBy={post.data.reviewedBy}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Banner do Material Gratuito -->
+      <div style="margin-top: 64px;">
+        <BannerMaterial compact={true} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('blogSearchInput') as HTMLInputElement | null;
+  const postItems = document.querySelectorAll('.post-item');
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    postItems.forEach((el) => {
+      const title = el.getAttribute('data-title') || '';
+      const desc = el.getAttribute('data-desc') || '';
+      if (title.includes(query) || desc.includes(query)) {
+        (el as HTMLElement).style.display = '';
+      } else {
+        (el as HTMLElement).style.display = 'none';
+      }
+    });
+  });
+</script>

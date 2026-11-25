@@ -1,0 +1,72 @@
+---
+import AreaLayout from '../layouts/AreaLayout.astro';
+
+const introParagraphs = [
+  'O diabetes mellitus e o pré-diabetes exigem uma abordagem clínica que vai muito além de cortar carboidratos da alimentação. Trata-se de uma condição sistêmica que impacta vasos sanguíneos, rins, visão e a saúde cardiovascular.',
+  'O acompanhamento com a endocrinologista Dra. Ana Carolina Mamede tem como foco principal o controle glicêmico sustentável, a escolha de terapias modernas com proteção de órgãos-alvo e a prevenção ativa de complicações a médio e longo prazo.'
+];
+
+const signals = [
+  'Sede excessiva e boca seca constante (polidipsia)',
+  'Vontade de urinar muitas vezes ao dia e à noite (poliúria)',
+  'Cansaço inexplicável, sonolência após as refeições e perda de disposição',
+  'Glicemia de jejum acima de 100 mg/dL ou hemoglobina glicada acima de 5,7%'
+];
+
+const evaluationSteps = [
+  {
+    title: 'Interpretação de Biomarcadores',
+    desc: 'Análise minuciosa de glicemia de jejum, hemoglobina glicada (HbA1c), curva glicêmica e função renal.'
+  },
+  {
+    title: 'Estratificação de Risco',
+    desc: 'Avaliação cardiovascular abrangente e investigação precoce de microalbuminúria e alterações vasculares.'
+  },
+  {
+    title: 'Definição de Metas Claras',
+    desc: 'Estabelecimento de metas individualizadas de glicemia de acordo com idade, comorbidades e perfil pessoal.'
+  },
+  {
+    title: 'Terapêutica Farmacológica',
+    desc: 'Prescrição criteriosa de medicações orais ou injetáveis modernas que protegem o coração e os rins.'
+  }
+];
+
+const monitoringPoints = [
+  'Consultas de revisão periódicas para avaliação da estabilidade glicêmica e ajuste posológico.',
+  'Orientações sobre automonitorização da glicose (sensores contínuos ou ponta de dedo).',
+  'Estímulo a hábitos saudáveis sem dietas punitivas, priorizando a aderência do paciente.',
+  'Canal de suporte para dúvidas e emissão digital rápida de receitas de uso contínuo.'
+];
+
+const faqItems = [
+  {
+    question: 'O pré-diabetes tem cura?',
+    answer: 'Sim, o pré-diabetes é um estágio em que a reversão é perfeitamente viável. Com intervenção precoce no estilo de vida e, quando necessário, medicação adjuvante, é possível normalizar a sensibilidade à insulina.'
+  },
+  {
+    question: 'Todo paciente diabético precisará tomar insulina no futuro?',
+    answer: 'Não. O diabetes tipo 2 bem controlado com terapias modernas, alimentação balanceada e atividade física regular pode permanecer estável por décadas sem a necessidade de insulinoterapia.'
+  },
+  {
+    question: 'Com que frequência devo dosar a hemoglobina glicada?',
+    answer: 'Em geral, recomenda-se a dosagem a cada 3 meses em pacientes em ajuste de tratamento ou fora da meta, e a cada 6 meses naqueles com estabilidade clínica comprovada.'
+  },
+  {
+    question: 'Como a telemedicina auxilia no controle do diabetes?',
+    answer: 'A consulta online é altamente eficiente para diabetes, pois permite revisar registros de glicemia, relatórios de sensores contínuos (como FreeStyle Libre) e exames laboratoriais com comodidade.'
+  }
+];
+---
+<AreaLayout
+  title="Endocrinologista para Diabetes em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Controle do diabetes e pré-diabetes com foco em longevidade e proteção cardiovascular. Consulta presencial em Guarapari/ES e online para todo o Brasil."
+  areaName="Diabetes"
+  slug="diabetes"
+  h1="Endocrinologista para diabetes em Guarapari/ES e online"
+  introParagraphs={introParagraphs}
+  signals={signals}
+  evaluationSteps={evaluationSteps}
+  monitoringPoints={monitoringPoints}
+  faqItems={faqItems}
+/>

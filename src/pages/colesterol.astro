@@ -1,0 +1,72 @@
+---
+import AreaLayout from '../layouts/AreaLayout.astro';
+
+const introParagraphs = [
+  'A dislipidemia — caracterizada pela elevação do colesterol LDL ("ruim"), dos triglicerídeos ou pela redução do colesterol HDL ("bom") — é uma das principais causas silenciosas de aterosclerose, infarto agudo do miocárdio e acidente vascular cerebral (AVC).',
+  'Na consulta com a Dra. Ana Carolina Mamede, o colesterol não é tratado apenas olhando para números de referência em tabelas genéricas de laboratório. Cada paciente recebe uma estratificação de risco cardiovascular minuciosa para definir metas terapêuticas protetoras baseadas em evidências científicas.'
+];
+
+const signals = [
+  'Colesterol LDL ou triglicerídeos persistentemente elevados em exames de sangue',
+  'Histórico familiar precoce de infarto ou AVC em pais, avós ou irmãos',
+  'Presença de placas de gordura nas pálpebras (xantelasmas) ou tendões (xantomas)',
+  'Associação com hipertensão, diabetes, esteatose hepática ou tabagismo'
+];
+
+const evaluationSteps = [
+  {
+    title: 'Painel Lipídico Detalhado',
+    desc: 'Dosagem de colesterol total, frações (LDL, HDL, VLDL), triglicerídeos, Não-HDL e, quando necessário, Apolipoproteína B e Lipoproteína(a).'
+  },
+  {
+    title: 'Estratificação do Risco Cardiovascular',
+    desc: 'Aplicação de escores de risco validados (Diretriz Brasileira de Dislipidemias da SBC) para definir o risco em 10 anos.'
+  },
+  {
+    title: 'Investigação de Causas Secundárias',
+    desc: 'Pesquisa de disfunções associadas que alteram lipídios, como hipotireoidismo descompensado, doença renal ou esteatose hepática.'
+  },
+  {
+    title: 'Terapêutica Farmacológica Individualizada',
+    desc: 'Prescrição assertiva de estatinas, ezetimiba ou terapias biológicas modernas conforme a meta de LDL.'
+  }
+];
+
+const monitoringPoints = [
+  'Reavaliações periódicas de perfil lipídico e enzimas hepáticas para checagem de tolerabilidade e segurança.',
+  'Ajustes de dosagem orientados para o alcance de metas agressivas em pacientes de alto risco.',
+  'Orientações dietéticas baseadas em evidências, priorizando redução de gorduras saturadas e trans.',
+  'Desmistificação de mitos infundados a respeito das estatinas e medicamentos para colesterol.'
+];
+
+const faqItems = [
+  {
+    question: 'Pessoas magras podem ter colesterol alto?',
+    answer: 'Sim, com muita frequência. Uma grande parcela do colesterol sanguíneo é sintetizada pelo próprio fígado sob influência genética e hormonal (como na hipercolesterolemia familiar), não dependendo unicamente de peso ou gordura corporal.'
+  },
+  {
+    question: 'O valor de referência de LDL no laudo laboratorial vale para todo mundo?',
+    answer: 'Não. Os laudos laboratoriais frequentemente trazem faixas amplas (ex: < 130 mg/dL), mas para pacientes de risco cardiovascular alto ou muito alto, a meta médica de LDL pode ser menor que 70 mg/dL ou menor que 50 mg/dL.'
+  },
+  {
+    question: 'Posso parar de tomar a estatina se o colesterol normalizou?',
+    answer: 'Geralmente não. A estatina age bloqueando a síntese hepática do colesterol e estabilizando placas ateroscleróticas nos vasos. Ao suspender o remédio, o colesterol tende a voltar aos patamares elevados anteriores.'
+  },
+  {
+    question: 'Qual a diferença entre triglicerídeos e colesterol?',
+    answer: 'O colesterol é uma molécula essencial utilizada para produzir membranas celulares e hormônios. Os triglicerídeos funcionam como reserva energética. Ambos, quando elevados, aceleram a inflamação vascular e o risco cardiovascular.'
+  }
+];
+---
+<AreaLayout
+  title="Colesterol Alto (Dislipidemia) em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Controle e tratamento de colesterol alto e triglicerídeos com médica endocrinologista em Guarapari/ES e consulta online para todo o Brasil. CRM-ES 22.237."
+  areaName="Colesterol"
+  slug="colesterol"
+  h1="Colesterol alto (dislipidemia): endocrinologista em Guarapari/ES e online"
+  introParagraphs={introParagraphs}
+  signals={signals}
+  evaluationSteps={evaluationSteps}
+  monitoringPoints={monitoringPoints}
+  faqItems={faqItems}
+/>

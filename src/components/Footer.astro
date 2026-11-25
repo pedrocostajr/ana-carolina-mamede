@@ -1,0 +1,68 @@
+---
+import { SITE_INFO, getWhatsAppUrl } from '../lib/constants';
+
+interface Props {
+  waOrigin?: string;
+}
+
+const { waOrigin = 'footer' } = Astro.props;
+const waLink = getWhatsAppUrl(waOrigin);
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="logo">
+          <span class="n">Ana Carolina Mamede</span>
+          <span class="s">Endocrinologia &amp; Metabologia</span>
+        </div>
+        <p style="margin-top:18px; max-width:300px; line-height:1.6;">
+          Endocrinologista em Guarapari/ES, com consultas presenciais e atendimento online para todo o Brasil.
+        </p>
+      </div>
+
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><strong>Consultório em Guarapari/ES</strong></li>
+          <li>{SITE_INFO.address}</li>
+          <li><a href="/consulta-online">Consulta online · Todo o Brasil</a></li>
+          <li>
+            <a class="js-wa-trigger" href={waLink} target="_blank" rel="noopener noreferrer" data-origin="footer-phone">
+              WhatsApp: {SITE_INFO.phoneDisplay}
+            </a>
+          </li>
+          <li>{SITE_INFO.hours}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Áreas de atuação</h4>
+        <ul>
+          <li><a href="/obesidade">Obesidade</a></li>
+          <li><a href="/diabetes">Diabetes</a></li>
+          <li><a href="/tireoide">Distúrbios da tireoide</a></li>
+          <li><a href="/menopausa">Menopausa e metabolismo</a></li>
+          <li><a href="/colesterol">Colesterol e dislipidemia</a></li>
+          <li><a href="/areas">Ver todas as áreas →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Conteúdo e Links</h4>
+        <ul>
+          <li><a href="/blog">Blog &amp; Artigos</a></li>
+          <li><a href="/material-gratuito">Material gratuito (Guia)</a></li>
+          <li><a href="/sobre">Sobre a Especialista</a></li>
+          <li><a href="/contato">Contato &amp; Localização</a></li>
+          <li><a href="/politica-de-privacidade">Política de Privacidade (LGPD)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>{SITE_INFO.fullCredentials}</span>
+      <span>© 2026 · Todos os direitos reservados · Atendimento particular exclusivo para adultos</span>
+    </div>
+  </div>
+</footer>

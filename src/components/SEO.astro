@@ -1,0 +1,182 @@
+---
+import { SITE_INFO } from '../lib/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  articleMeta?: {
+    publishDate?: string;
+    updatedDate?: string;
+    author?: string;
+    category?: string;
+  };
+}
+
+const {
+  title,
+  description,
+  canonical,
+  noindex = false,
+  ogImage = '/images/og-default.jpg',
+  ogType = 'website',
+  articleMeta
+} = Astro.props;
+
+const currentUrl = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : `${SITE_INFO.domain}${Astro.url.pathname}`);
+const formattedTitle = title.includes(SITE_INFO.name) ? title : `${title} | ${SITE_INFO.name}`;
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_INFO.domain}${ogImage}`;
+
+// Physician / MedicalBusiness JSON-LD base
+const physicianSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  '@id': `${SITE_INFO.domain}/#physician`,
+  'name': 'Dra. Ana Carolina Mamede',
+  'medicalSpecialty': 'Endocrinology',
+  'url': SITE_INFO.domain,
+  'telephone': '+55-27-99995-3553',
+  'image': `${SITE_INFO.domain}/images/dra-ana-hero.png`,
+  'description': 'Endocrinologista e Metabologista em Guarapari/ES com atendimento online para todo o Brasil. CRM-ES 22.237 · RQE 15.266.',
+  'address': {
+    '@type': 'PostalAddress',
+    'streetAddress': '[PREENCHER - Endereço completo]',
+    'addressLocality': 'Guarapari',
+    'addressRegion': 'ES',
+    'addressCountry': 'BR'
+  },
+  'areaServed': [
+    { '@type': 'City', 'name': 'Guarapari' },
+    { '@type': 'City', 'name': 'Vila Velha' },
+    { '@type': 'City', 'name': 'Vitória' },
+    { '@type': 'City', 'name': 'Anchieta' },
+    { '@type': 'Country', 'name': 'Brasil' }
+  ],
+  'availableService': [
+    {
+      '@type': 'MedicalTherapy',
+      'name': 'Consulta presencial em Endocrinologia e Metabologia em Guarapari/ES'
+    },
+    {
+      '@type': 'MedicalTherapy',
+      'name': 'Consulta online (telemedicina) em Endocrinologia para todo o Brasil'
+    }
+  ],
+  'priceRange': 'Particular'
+};
+
+const articleSchema = articleMeta ? {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  'headline': title,
+  'description': description,
+  'url': currentUrl,
+  'image': absoluteOgImage,
+  'datePublished': articleMeta.publishDate,
+  'dateModified': articleMeta.updatedDate || articleMeta.publishDate,
+  'author': {
+    '@type': 'Person',
+    'name': articleMeta.author || 'Dra. Ana Carolina Mamede',
+    'jobTitle': 'Endocrinologista e Metabologista',
+    'url': `${SITE_INFO.domain}/sobre`
+  },
+  'reviewedBy': {
+    '@type': 'Person',
+    'name': 'Dra. Ana Carolina Mamede',
+    'jobTitle': 'Endocrinologista CRM-ES 22.237 RQE 15.266'
+  },
+  'publisher': {
+    '@type': 'Organization',
+    'name': 'Dra. Ana Carolina Mamede — Endocrinologia & Metabologia',
+    'url': SITE_INFO.domain
+  }
+} : null;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{formattedTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={currentUrl} />
+
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+)}
+
+<!-- Preload critical fonts for speed / PageSpeed Core Web Vitals -->
+<link rel="preload" href="/assets/fonts/cinzel-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/roboto-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/roboto-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="Dra. Ana Carolina Mamede" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={currentUrl} />
+<meta name="twitter:title" content={formattedTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteOgImage} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(physicianSchema)} />
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}
+
+<!-- GA4 Tracking & Event Dispatcher -->
+<script define:vars={{ gaId: SITE_INFO.gaMeasurementId }}>
+  function initGA() {
+    if (window._gaLoaded || !gaId || gaId.includes('PREENCHER')) return;
+    window._gaLoaded = true;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', gaId, { page_path: window.location.pathname });
+  }
+
+  // Check initial consent
+  if (localStorage.getItem('cookie_consent') === 'accepted') {
+    initGA();
+  }
+
+  window.addEventListener('cookie_consent_granted', () => {
+    initGA();
+  });
+
+  // Track WhatsApp clicks and events
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.js-wa-trigger').forEach((el) => {
+      el.addEventListener('click', () => {
+        const origin = el.getAttribute('data-origin') || 'unknown';
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'whatsapp_click', {
+            origin: origin,
+            page_location: window.location.href,
+            page_path: window.location.pathname
+          });
+        }
+      });
+    });
+  });
+</script>

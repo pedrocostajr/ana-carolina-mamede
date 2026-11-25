@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { SITE_INFO } from '../lib/constants';
+---
+<BaseLayout
+  title="Obrigado pelo Cadastro | Dra. Ana Carolina Mamede"
+  description="Seu guia Metabolismo em Equilíbrio já está disponível para download."
+  noindex={true}
+  waOrigin="obrigado"
+>
+  <section class="section sand" style="min-height: 80vh; display: flex; align-items: center;">
+    <div class="wrap" style="width: 100%;">
+      <span class="label-page">Cadastro confirmado</span>
+      
+      <div class="thanks">
+        <div>
+          <div class="ok">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12l5 5 9-10"></path>
+            </svg>
+          </div>
+          <h1 style="font-size: clamp(26px, 3.5vw, 34px); margin-bottom: 12px; color: var(--brown);">
+            Pronto! Seu guia está a caminho.
+          </h1>
+          <p class="muted" style="line-height: 1.6;">
+            Enviamos uma cópia completa do material para a sua caixa de entrada. Você também pode fazer o download imediato no botão abaixo:
+          </p>
+
+          <div style="display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap;">
+            <a
+              class="btn"
+              href="#baixar-pdf"
+              id="downloadPdfBtn"
+              style="background: var(--brown);"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+              </svg>
+              Baixar o guia (PDF)
+            </a>
+          </div>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">
+            [PREENCHER - Inserir o arquivo PDF final na pasta /public/downloads/]
+          </p>
+        </div>
+
+        <div class="mode online" style="border-radius: 22px; padding: 36px 32px;">
+          <h3>Quer uma avaliação médica individual?</h3>
+          <p style="margin-bottom: 24px; line-height: 1.6;">
+            Descubra a causa real dos seus sintomas através de uma consulta detalhada presencial em Guarapari ou online para qualquer cidade do Brasil.
+          </p>
+          <BotaoWhatsApp
+            originKey="obrigado"
+            text="Agendar pelo WhatsApp"
+            className="btn"
+            customMessage="Olá! Baixei o guia e gostaria de agendar uma consulta."
+          />
+        </div>
+      </div>
+
+      <p class="center muted" style="font-size: 13px; margin-top: 36px;">
+        Este material tem caráter estritamente educativo e não substitui a consulta médica presencial ou por telemedicina.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Conversion tracking for lead & PDF download
+  const downloadBtn = document.getElementById('downloadPdfBtn');
+  downloadBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'pdf_download', {
+        event_category: 'Material',
+        event_label: 'Guia Metabolismo em Equilíbrio'
+      });
+    }
+    alert('O download do guia começará em instantes. [Arquivo demonstrativo pronto para substituição pelo PDF final do consultório]');
+  });
+</script>

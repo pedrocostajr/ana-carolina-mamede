@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import FAQ from '../components/FAQ.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import BannerMaterial from '../components/BannerMaterial.astro';
+import { SITE_INFO } from '../lib/constants';
+
+const faqTelemedicina = [
+  {
+    question: 'A consulta online tem a mesma qualidade e validade da consulta presencial?',
+    answer: 'Sim. A consulta online segue exatamente os mesmos padrões éticos e de rigor técnico da presencial: história clínica aprofundada, análise de hábitos de vida e avaliação minuciosa de exames laboratoriais. Caso seja identificado que um exame físico presencial é imprescindível, você será orientado(a).'
+  },
+  {
+    question: 'Como recebo minhas receitas de medicamentos e pedidos de exame?',
+    answer: 'Todas as receitas e pedidos são emitidos com assinatura digital qualificada (ICP-Brasil), contendo QR Code de validação. Eles são enviados diretamente para o seu WhatsApp e e-mail e são aceitos por farmácias e laboratórios de todo o Brasil.'
+  },
+  {
+    question: 'Qual plataforma é utilizada para a videochamada?',
+    answer: 'A consulta é realizada por uma plataforma de telemedicina segura e criptografada (como Google Meet ou plataforma médica especializada). O link de acesso é enviado diretamente para o seu WhatsApp antes do horário agendado, sem necessidade de instalar aplicativos complicados.'
+  },
+  {
+    question: 'Vocês atendem por convênio ou plano de saúde?',
+    answer: 'Não. Os atendimentos da Dra. Ana Carolina Mamede são realizados exclusivamente na modalidade particular, garantindo o tempo e a atenção individualizada que cada caso exige. Emitimos nota fiscal com recibo médico para solicitação de reembolso junto ao seu convênio.'
+  },
+  {
+    question: 'Como funciona o retorno na consulta online?',
+    answer: 'O retorno médico está incluído no acompanhamento para avaliação dos novos exames solicitados ou ajuste inicial das condutas propostas, dentro do prazo clínico estabelecido.'
+  }
+];
+---
+<BaseLayout
+  title="Endocrinologista Online para Todo o Brasil | Dra. Ana Carolina Mamede"
+  description="Consulta online com endocrinologista: obesidade, diabetes, tireoide, menopausa e colesterol. Atendimento por vídeo para todo o Brasil. CRM-ES 22.237."
+  canonical={`${SITE_INFO.domain}/consulta-online`}
+  waOrigin="consultaOnline"
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="wrap split">
+      <div>
+        <Breadcrumb items={[{ label: 'Consulta online' }]} />
+        <span class="eyebrow">Telemedicina para todo o Brasil</span>
+        <h1 style="margin: 16px 0 20px; font-size: clamp(32px, 4.5vw, 44px);">
+          Endocrinologista online, de onde você estiver
+        </h1>
+        <p class="lead">
+          Acompanhamento especializado em obesidade, diabetes, tireoide, menopausa e colesterol, com a mesma investigação cuidadosa e humanizada da consulta presencial.
+        </p>
+        <div class="ctas" style="display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap;">
+          <BotaoWhatsApp
+            originKey="consultaOnline"
+            text="Agendar consulta online"
+            className="btn"
+          />
+        </div>
+        <p class="crm" style="color: var(--rose); font-size: 14px; margin-top: 18px; font-weight: 500;">
+          {SITE_INFO.fullCredentials}
+        </p>
+      </div>
+
+      <div class="photo" style="height: 440px;">
+        <span>Foto da Dra. em atendimento online</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Passo a Passo -->
+  <section class="section">
+    <div class="wrap center">
+      <span class="eyebrow">Passo a passo simples</span>
+      <h2 style="margin-top: 12px;">Como funciona a consulta online</h2>
+      <div class="steps" style="text-align: left;">
+        <div class="step">
+          <b>1. Agendamento</b>
+          <p>Pelo WhatsApp da equipe, você escolhe com facilidade o melhor dia e horário na sua rotina.</p>
+        </div>
+        <div class="step">
+          <b>2. Envio de exames</b>
+          <p>Você envia seus exames anteriores e laudos em PDF antes da consulta para análise prévia.</p>
+        </div>
+        <div class="step">
+          <b>3. Consulta por vídeo</b>
+          <p>Conversa detalhada e tranquila de 60 minutos sobre sintomas, rotina, queixas e metas.</p>
+        </div>
+        <div class="step">
+          <b>4. Plano e acompanhamento</b>
+          <p>Plano individualizado, receitas digitais com QR Code e agendamento do retorno.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quem é e Bom saber -->
+  <section class="section sand">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Praticidade e rigor clínico</span>
+        <h2 style="margin-top: 12px;">Para quem é a consulta online</h2>
+        <ul style="margin: 24px 0 0 20px; color: var(--brown); display: grid; gap: 12px; font-size: 16.5px;">
+          <li>Mora em outra cidade ou estado e quer acompanhamento com especialista</li>
+          <li>Tem uma rotina corrida e precisa de praticidade sem perda de qualidade médica</li>
+          <li>Busca segunda opinião ou investigação aprofundada de desequilíbrios metabólicos</li>
+          <li>Quer dar continuidade estável ao seu tratamento sem custos e tempo de deslocamento</li>
+        </ul>
+      </div>
+
+      <div class="cred" style="background: #fff; padding: 36px; border: 1px solid var(--sand-3); border-radius: var(--radius);">
+        <b style="font-size: 18px; color: var(--brown); display: block; margin-bottom: 12px;">Bom saber</b>
+        <p style="font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+          Atendimento exclusivamente particular · exclusivo para pacientes adultos (a partir de 18 anos) · não realizamos tratamentos hormonais com fins meramente estéticos.
+        </p>
+        <p style="font-size: 14px; color: var(--brown-2); font-weight: 500;">
+          Receitas de medicamentos de controle especial e pedidos de exames são emitidos com assinatura digital ICP-Brasil, válidos em farmácias e laboratórios de todo o território brasileiro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Telemedicina -->
+  <section class="section">
+    <div class="wrap center">
+      <FAQ
+        eyebrow="Dúvidas sobre a telemedicina"
+        title="Perguntas frequentes sobre o atendimento por vídeo"
+        items={faqTelemedicina}
+      />
+    </div>
+  </section>
+
+  <!-- Banner Material -->
+  <section class="section sand" style="padding-top: 0; background: none;">
+    <div class="wrap">
+      <BannerMaterial />
+    </div>
+  </section>
+
+  <!-- Chamada final -->
+  <section class="section final">
+    <div class="wrap">
+      <h2>Comece seu acompanhamento médico de onde estiver</h2>
+      <p class="lead">
+        Atendimento endocrinológico acolhedor e com base científica para você em qualquer lugar do Brasil.
+      </p>
+      <BotaoWhatsApp
+        originKey="consultaOnline"
+        text="Agendar consulta online"
+        className="btn"
+      />
+    </div>
+  </section>
+</BaseLayout>

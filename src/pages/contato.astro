@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { SITE_INFO } from '../lib/constants';
+---
+<BaseLayout
+  title="Contato e Localização | Dra. Ana Carolina Mamede — Endocrinologista"
+  description="Entre em contato com o consultório da Dra. Ana Carolina Mamede em Guarapari/ES ou agende sua consulta online para todo o Brasil. WhatsApp (27) 99995-3553."
+  canonical={`${SITE_INFO.domain}/contato`}
+  waOrigin="contato"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb items={[{ label: 'Contato' }]} />
+      <span class="eyebrow">Canais de Atendimento</span>
+      <h1 style="margin: 16px 0 20px;">Entre em Contato</h1>
+      <p class="lead" style="max-width: 720px;">
+        Nossa equipe está pronta para esclarecer suas dúvidas sobre agendamentos presenciais em Guarapari/ES ou consultas online por telemedicina.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Agendamento &amp; Informações</span>
+        <h2 style="margin: 12px 0 24px;">Fale diretamente com nossa equipe</h2>
+
+        <div style="display: grid; gap: 24px; font-size: 16.5px;">
+          <div style="background: var(--sand-1); padding: 24px; border-radius: var(--radius);">
+            <b style="color: var(--brown); font-size: 18px; display: block; margin-bottom: 8px;">WhatsApp Oficial</b>
+            <p style="margin-bottom: 14px; color: var(--ink);">
+              Atendimento rápido para tirar dúvidas sobre valores, horários e marcar sua consulta.
+            </p>
+            <BotaoWhatsApp
+              originKey="contato"
+              text={`Conversar no WhatsApp ${SITE_INFO.phoneDisplay}`}
+              className="btn"
+            />
+          </div>
+
+          <div style="border: 1px solid var(--sand-3); padding: 24px; border-radius: var(--radius);">
+            <b style="color: var(--brown); font-size: 18px; display: block; margin-bottom: 8px;">Consultório Presencial</b>
+            <p style="color: var(--muted); line-height: 1.6;">
+              <strong>Cidade:</strong> {SITE_INFO.city} / {SITE_INFO.state}<br />
+              <strong>Endereço:</strong> {SITE_INFO.address}<br />
+              <strong>Horário de atendimento:</strong> {SITE_INFO.hours}
+            </p>
+            <p style="font-size: 13px; color: var(--rose); margin-top: 10px;">
+              [PREENCHER - Endereço completo, número da sala e horários definitivos da recepção]
+            </p>
+          </div>
+
+          <div style="border: 1px solid var(--sand-3); padding: 24px; border-radius: var(--radius);">
+            <b style="color: var(--brown); font-size: 18px; display: block; margin-bottom: 8px;">Consulta Online (Telemedicina)</b>
+            <p style="color: var(--muted); line-height: 1.6;">
+              Atendimento por videochamada para pacientes em qualquer cidade do Brasil. Prescrição médica digital enviada imediatamente após a consulta.
+            </p>
+            <a class="btn ghost" href="/consulta-online" style="margin-top: 14px;">
+              Ver informações da telemedicina
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa do Google Incorporado -->
+      <div>
+        <div style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--sand-3); background: var(--sand-2); height: 460px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px;">
+          <div class="ic" style="width: 56px; height: 56px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--brown-2);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3 style="font-size: 22px; margin-bottom: 8px;">Localização em Guarapari/ES</h3>
+          <p class="muted" style="max-width: 340px; margin-bottom: 20px;">
+            Consultório localizado em área central e de fácil acesso, atendendo Guarapari, Anchieta, Vila Velha e Vitória.
+          </p>
+          <a
+            class="btn dark"
+            href={SITE_INFO.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir no Google Maps
+          </a>
+          <small style="margin-top: 12px; color: var(--rose);">
+            [PREENCHER - Inserir iframe de incorporação do Google Maps após confirmação de endereço]
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

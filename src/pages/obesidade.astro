@@ -1,0 +1,72 @@
+---
+import AreaLayout from '../layouts/AreaLayout.astro';
+
+const introParagraphs = [
+  'A obesidade é uma condição clínica crônica e multifatorial, complexa e fortemente regulada por mecanismos hormonais, genéticos e neuroendócrinos. Tratar a obesidade não é uma questão de simples força de vontade ou restrição extrema, mas sim de entender as respostas fisiológicas do seu organismo.',
+  'No consultório em Guarapari ou na telemedicina para todo o Brasil, a Dra. Ana Carolina Mamede realiza uma investigação aprofundada dos eixos hormonais e do padrão metabólico individual, traçando metas realistas e duradouras, sem promessas milagrosas.'
+];
+
+const signals = [
+  'Dificuldade persistente para perder peso mesmo com dieta regrada',
+  'Sensação de fome constante ou compulsões alimentares periódicas',
+  'Histórico de efeito sanfona com recuperação rápida do peso perdido',
+  'Cansaço matinal desproporcional, sono agitado e ronco frequente'
+];
+
+const evaluationSteps = [
+  {
+    title: 'Anamnese Completa',
+    desc: 'Histórico pessoal e familiar detalhado, rotina alimentar, histórico de peso e tratamentos prévios.'
+  },
+  {
+    title: 'Investigação Metabólica',
+    desc: 'Exames laboratoriais para avaliar resistência à insulina, tireoide, cortisol, perfil lipídico e função hepática.'
+  },
+  {
+    title: 'Composição Corporal',
+    desc: 'Avaliação clínica focada na saúde cardiovascular, distribuição de gordura e preservação de massa magra.'
+  },
+  {
+    title: 'Plano Terapêutico Ético',
+    desc: 'Definição de medicação baseada em evidência científica quando indicada, aliada a mudanças viáveis de estilo de vida.'
+  }
+];
+
+const monitoringPoints = [
+  'Acompanhamento regular para ajustes de dosagem e monitoramento de segurança médica.',
+  'Prevenção e controle de comorbidades associadas como diabetes tipo 2, hipertensão e dislipidemia.',
+  'Foco essencial na manutenção do peso a longo prazo para evitar a recuperação ponderal.',
+  'Abordagem humanizada, acolhedora e livre de julgamentos.'
+];
+
+const faqItems = [
+  {
+    question: 'Por que é tão difícil manter o peso após uma perda rápida?',
+    answer: 'Quando o corpo perde peso de forma abrupta, ocorrem adaptações metabólicas de sobrevivência: a taxa metabólica basal reduz e os hormônios estimuladores do apetite aumentam. O acompanhamento médico visa minimizar essa resposta compensatória.'
+  },
+  {
+    question: 'Todo paciente com obesidade precisa tomar medicamentos?',
+    answer: 'Não necessariamente. A indicação medicamentosa depende de critérios clínicos rigorosos, comorbidades associadas e resposta individual. Quando prescritos, são remédios com aprovação da Anvisa e eficácia comprovada por estudos clínicos.'
+  },
+  {
+    question: 'A consulta online é adequada para acompanhamento de obesidade?',
+    answer: 'Sim, a telemedicina permite uma discussão detalhada de hábitos, análise minuciosa de exames de sangue e prescrição de medicamentos por receita digital válida em todo o território nacional.'
+  },
+  {
+    question: 'A Dra. realiza prescrição de hormônios para emagrecimento rápido?',
+    answer: 'Não. Em conformidade com o Conselho Federal de Medicina (CFM) e a SBEM, a Dra. Ana Carolina Mamede não realiza terapias hormonais com finalidade meramente estética ou de perda de peso sem deficiência hormonal comprovada.'
+  }
+];
+---
+<AreaLayout
+  title="Tratamento de Obesidade em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Tratamento ético e individualizado da obesidade com médica endocrinologista em Guarapari/ES e consulta online para todo o Brasil. CRM-ES 22.237."
+  areaName="Obesidade"
+  slug="obesidade"
+  h1="Tratamento de obesidade com endocrinologista em Guarapari/ES e online"
+  introParagraphs={introParagraphs}
+  signals={signals}
+  evaluationSteps={evaluationSteps}
+  monitoringPoints={monitoringPoints}
+  faqItems={faqItems}
+/>

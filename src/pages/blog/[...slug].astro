@@ -1,0 +1,171 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CardPost from '../../components/CardPost.astro';
+import BotaoWhatsApp from '../../components/BotaoWhatsApp.astro';
+import { SITE_INFO } from '../../lib/constants';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+// Fetch related articles (same category, different id)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((p) => p.data.category === post.data.category && p.id !== post.id)
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  obesidade: 'Obesidade',
+  diabetes: 'Diabetes',
+  tireoide: 'Tireoide',
+  menopausa: 'Menopausa',
+  colesterol: 'Colesterol',
+  consulta: 'Consulta'
+};
+const categoryName = categoryLabels[post.data.category] || post.data.category;
+
+const formattedDate = new Date(post.data.publishDate).toLocaleDateString('pt-BR', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
+---
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonical={`${SITE_INFO.domain}/blog/${post.id}`}
+  ogType="article"
+  ogImage={post.data.image}
+  articleMeta={{
+    publishDate: new Date(post.data.publishDate).toISOString(),
+    updatedDate: post.data.updatedDate ? new Date(post.data.updatedDate).toISOString() : undefined,
+    author: post.data.reviewedBy,
+    category: post.data.category
+  }}
+  waOrigin="artigo"
+>
+  <section class="section" style="padding-top: 56px;">
+    <div class="wrap article">
+      <!-- Conteúdo Principal -->
+      <article>
+        <Breadcrumb
+          items={[
+            { label: 'Blog', href: '/blog' },
+            { label: categoryName, href: `/blog/categoria/${post.data.category}` }
+          ]}
+        />
+        <span class="eyebrow" style="color: var(--terra); margin-top: 8px;">
+          {categoryName}
+        </span>
+        <h1 style="font-size: clamp(30px, 4vw, 42px); margin: 14px 0 16px;">
+          {post.data.title}
+        </h1>
+        <p class="lead" style="margin-bottom: 24px;">
+          {post.data.description}
+        </p>
+
+        <!-- Caixa de autoria e CRM -->
+        <div class="author">
+          <div class="av"></div>
+          <div>
+            <b>{post.data.reviewedBy}</b>
+            <small>
+              Endocrinologia e Metabologia · {SITE_INFO.crm} · {SITE_INFO.rqe} · Atualizado em {formattedDate} · {post.data.readingTime} min de leitura
+            </small>
+          </div>
+        </div>
+
+        <div class="img-ph" style="height: 340px; margin-bottom: 34px;">
+          <span>{post.data.title}</span>
+        </div>
+
+        <!-- Conteúdo do Artigo -->
+        <div class="prose">
+          <Content />
+
+          <!-- CTA do material no meio do texto -->
+          <div class="inline-cta">
+            <div class="mini"></div>
+            <div>
+              <b>Guia gratuito: Metabolismo em equilíbrio</b>
+              <span class="muted" style="font-size: 15px;">
+                Sinais de alerta, exames explicados e o que perguntar na sua consulta médica.
+              </span>
+              <br />
+              <a class="btn" style="margin-top: 12px; padding: 11px 18px; font-size: 11.5px;" href="/material-gratuito">
+                Receber o guia gratuito
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="note">
+          Este conteúdo tem caráter puramente educativo e informativo e não substitui a consulta, diagnóstico ou avaliação médica individualizada. Referências: Diretrizes da Sociedade Brasileira de Endocrinologia e Metabologia (SBEM) e Sociedade Brasileira de Diabetes (SBD).
+        </p>
+      </article>
+
+      <!-- Barra Lateral (TOC e Agendamento) -->
+      <aside>
+        {headings.length > 0 && (
+          <div class="toc">
+            <b>Neste artigo</b>
+            <ol>
+              {headings
+                .filter((h) => h.depth === 2)
+                .map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+            </ol>
+          </div>
+        )}
+
+        <div class="side-card">
+          <h3>Consulta presencial ou online</h3>
+          <p>
+            Atendimento em Guarapari/ES e telemedicina para todo o Brasil com acompanhamento personalizado.
+          </p>
+          <BotaoWhatsApp
+            originKey="artigo"
+            text="Agendar consulta"
+            className="btn"
+            customMessage="Olá! Li um artigo no blog e gostaria de agendar uma consulta."
+          />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Artigos Relacionados -->
+  {relatedPosts.length > 0 && (
+    <section class="section sand">
+      <div class="wrap">
+        <span class="eyebrow">Continue lendo</span>
+        <h2 style="margin-top: 12px;">Artigos relacionados</h2>
+        <div class="posts" style="margin-top: 36px;">
+          {relatedPosts.map((p) => (
+            <CardPost
+              title={p.data.title}
+              category={p.data.category}
+              description={p.data.description}
+              readingTime={p.data.readingTime}
+              href={`/blog/${p.id}`}
+              image={p.data.image}
+              reviewedBy={p.data.reviewedBy}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

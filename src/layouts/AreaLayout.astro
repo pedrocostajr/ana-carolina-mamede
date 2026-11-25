@@ -1,0 +1,237 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CardPost from '../components/CardPost.astro';
+import BannerMaterial from '../components/BannerMaterial.astro';
+import FAQ from '../components/FAQ.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { getCollection } from 'astro:content';
+import { SITE_INFO } from '../lib/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  areaName: string;
+  slug: string;
+  h1: string;
+  introParagraphs: string[];
+  signals: string[];
+  evaluationSteps: { title: string; desc: string }[];
+  monitoringPoints: string[];
+  faqItems: { question: string; answer: string }[];
+}
+
+const {
+  title,
+  description,
+  areaName,
+  slug,
+  h1,
+  introParagraphs,
+  signals,
+  evaluationSteps,
+  monitoringPoints,
+  faqItems
+} = Astro.props;
+
+// Fetch related blog articles for this specific area category
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((post) => post.data.category === slug || (slug === 'colesterol' && post.data.category === 'colesterol'))
+  .slice(0, 3);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_INFO.domain}/${slug}`}
+  waOrigin={slug}
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb
+        items={[
+          { label: 'Áreas de atuação', href: '/areas' },
+          { label: areaName }
+        ]}
+      />
+      <span class="eyebrow">Endocrinologia &amp; Metabologia · {areaName}</span>
+      <h1 style="margin: 16px 0 20px; font-size: clamp(30px, 4vw, 44px);">
+        {h1}
+      </h1>
+      <div style="max-width: 800px; display: flex; flex-direction: column; gap: 14px;">
+        {introParagraphs.map((p) => (
+          <p class="lead" style="color: var(--ink); opacity: 0.9;">{p}</p>
+        ))}
+      </div>
+      <div class="ctas" style="display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap;">
+        <BotaoWhatsApp
+          originKey={slug}
+          text="Agendar consulta"
+          className="btn"
+        />
+        <a class="btn ghost" href="/consulta-online">
+          Como funciona o atendimento online
+        </a>
+      </div>
+      <p class="crm" style="color: var(--rose); font-size: 14px; margin-top: 20px; font-weight: 500;">
+        {SITE_INFO.fullCredentials}
+      </p>
+    </div>
+  </section>
+
+  <!-- Sinais que merecem atenção -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Investigação clínica</span>
+      <h2 style="margin-top: 12px;">Sinais que merecem atenção</h2>
+      <p class="lead" style="margin-top: 10px; max-width: 720px;">
+        Desequilíbrios no organismo costumam dar sinais antes de se tornarem diagnósticos consolidados. Fique atento a:
+      </p>
+      <div class="signals" style="margin-top: 36px;">
+        {signals.map((sig) => (
+          <div class="signal">
+            <div class="ic">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4M12 16h.01"></path>
+              </svg>
+            </div>
+            <span>{sig}</span>
+          </div>
+        ))}
+      </div>
+      <p class="center muted" style="font-size: 14px; margin-top: 28px;">
+        <small>[REVISÃO MÉDICA - Lista de sinais preliminar para aprovação da Dra. Ana Carolina]</small>
+      </p>
+    </div>
+  </section>
+
+  <!-- Como é feita a avaliação -->
+  <section class="section sand">
+    <div class="wrap">
+      <span class="eyebrow">Diagnóstico preciso</span>
+      <h2 style="margin-top: 12px;">Como é feita a avaliação médica</h2>
+      <p class="lead" style="margin-top: 10px; max-width: 720px;">
+        Sem protocolos genéricos ou promessas rápidas: cada consulta é um momento de escuta cuidadosa e raciocínio clínico.
+      </p>
+      <div class="steps" style="margin-top: 36px;">
+        {evaluationSteps.map((step) => (
+          <div class="step">
+            <b>{step.title}</b>
+            <p>{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona o acompanhamento -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Continuidade do cuidado</span>
+        <h2 style="margin-top: 12px;">Como funciona o acompanhamento</h2>
+        <div style="margin: 22px 0 0; display: grid; gap: 14px; font-size: 16.5px; color: var(--ink);">
+          {monitoringPoints.map((point) => (
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <span style="color: var(--terra); font-weight: bold; font-size: 20px; line-height: 1;">✓</span>
+              <p>{point}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="cred" style="background: var(--sand-1); padding: 36px; border-radius: var(--radius);">
+        <b style="font-size: 18px; display: block; margin-bottom: 12px;">Compromisso ético com a sua saúde</b>
+        <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">
+          O acompanhamento com a Dra. Ana Carolina Mamede é pautado nas diretrizes da Sociedade Brasileira de Endocrinologia e Metabologia (SBEM). Não prescrevemos tratamentos hormonais com finalidade meramente estética ou soluções ilusórias. O foco é a longevidade com qualidade de vida e segurança.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Duplo: Presencial e Online -->
+  <section class="section sand">
+    <div class="wrap center">
+      <span class="eyebrow">Modalidades de agendamento</span>
+      <h2 style="margin-top: 12px;">Agende sua consulta para {areaName.toLowerCase()}</h2>
+      <div class="modes" style="text-align: left; margin-top: 40px;">
+        <div class="mode">
+          <h3>Consulta presencial</h3>
+          <p class="muted">Atendimento em consultório confortável e acolhedor em Guarapari, Espírito Santo.</p>
+          <ul>
+            <li>Exame físico detalhado quando aplicável</li>
+            <li>Próximo a Vila Velha, Vitória e Anchieta</li>
+            <li>Atendimento exclusivamente particular</li>
+          </ul>
+          <BotaoWhatsApp
+            originKey={slug}
+            text="Agendar presencial"
+            className="btn"
+          />
+        </div>
+
+        <div class="mode online">
+          <h3>Consulta online</h3>
+          <p>Telemedicina de onde você estiver, para todo o Brasil.</p>
+          <ul>
+            <li>Consulta por videochamada com a mesma profundidade</li>
+            <li>Envio antecipado de exames laboratoriais</li>
+            <li>Receitas e pedidos digitais aceitos nacionalmente</li>
+          </ul>
+          <a class="btn" href="/consulta-online">
+            Ver detalhes da consulta online
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ da Área -->
+  <section class="section">
+    <div class="wrap center">
+      <FAQ
+        eyebrow="Tire suas dúvidas"
+        title={`Perguntas frequentes sobre ${areaName.toLowerCase()}`}
+        items={faqItems}
+      />
+    </div>
+  </section>
+
+  <!-- Artigos do Blog da mesma categoria -->
+  {relatedPosts.length > 0 && (
+    <section class="section sand">
+      <div class="wrap">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <span class="eyebrow">Conteúdo médico</span>
+            <h2 style="margin-top: 12px;">Artigos sobre {areaName.toLowerCase()}</h2>
+          </div>
+          <a class="btn ghost" href={`/blog/categoria/${slug}`}>
+            Ver todos da categoria
+          </a>
+        </div>
+        <div class="posts" style="margin-top: 36px;">
+          {relatedPosts.map((post) => (
+            <CardPost
+              title={post.data.title}
+              category={post.data.category}
+              description={post.data.description}
+              readingTime={post.data.readingTime}
+              href={`/blog/${post.id}`}
+              image={post.data.image}
+              reviewedBy={post.data.reviewedBy}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Banner Material Gratuito -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="wrap">
+      <BannerMaterial />
+    </div>
+  </section>
+</BaseLayout>

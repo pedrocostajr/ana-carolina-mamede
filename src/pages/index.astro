@@ -1,0 +1,321 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CardArea from '../components/CardArea.astro';
+import CardPost from '../components/CardPost.astro';
+import BannerMaterial from '../components/BannerMaterial.astro';
+import FAQ from '../components/FAQ.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { getCollection } from 'astro:content';
+import { SITE_INFO } from '../lib/constants';
+
+// Blog posts query - show latest 3 articles
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+const recentPosts = sortedPosts.slice(0, 3);
+
+const faqHome = [
+  {
+    question: 'A consulta online tem a mesma qualidade da presencial?',
+    answer: 'A consulta online segue o mesmo cuidado: história clínica detalhada, análise de exames e plano individualizado. Quando necessário, o exame físico presencial é orientado.'
+  },
+  {
+    question: 'Vocês atendem por plano de saúde?',
+    answer: 'Os atendimentos são realizados somente na modalidade particular, possibilitando um tempo de consulta adequado e escuta atenta. Emitimos nota fiscal para que você possa solicitar reembolso junto ao seu convênio.'
+  },
+  {
+    question: 'Preciso levar exames na primeira consulta?',
+    answer: 'Se tiver exames recentes realizados nos últimos 6 a 12 meses, leve ou envie antes da consulta. Caso necessário, novos exames complementares serão solicitados de forma personalizada na sua avaliação.'
+  },
+  {
+    question: 'Como funciona o retorno?',
+    answer: 'O retorno faz parte integrante do acompanhamento e é agendado conforme a necessidade clínica de cada paciente para análise de exames solicitados e calibração das condutas terapêuticas.'
+  },
+  {
+    question: 'A Dra. atende em quais cidades?',
+    answer: 'Presencialmente em Guarapari/ES, recebendo com frequência pacientes de cidades vizinhas como Vila Velha, Vitória e Anchieta, e online por telemedicina para todo o Brasil.'
+  }
+];
+---
+<BaseLayout
+  title="Endocrinologista em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Endocrinologista em Guarapari/ES com consulta online para todo o Brasil. Obesidade, diabetes, tireoide, menopausa e colesterol. CRM-ES 22.237."
+  canonical={SITE_INFO.domain}
+  waOrigin="home"
+>
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="eyebrow">Endocrinologista em Guarapari/ES e online</span>
+        <h1>Seu corpo não está contra você. Ele precisa de compreensão.</h1>
+        <p class="lead">
+          Investigação profunda de desequilíbrios hormonais e metabólicos para quem busca retomar a qualidade de vida.
+        </p>
+        <div class="chips">
+          <span class="chip"><i></i>Presencial em Guarapari/ES</span>
+          <span class="chip"><i></i>Consulta online para todo o Brasil</span>
+        </div>
+        <div class="ctas">
+          <BotaoWhatsApp originKey="home" text="Agendar consulta" className="btn" />
+          <a class="btn ghost" href="/consulta-online">Como funciona a consulta online</a>
+        </div>
+        <p class="crm">{SITE_INFO.fullCredentials}</p>
+      </div>
+
+      <div class="photo">
+        <span>Foto da Dra. Ana Carolina</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Sinais que merecem atenção -->
+  <section class="section">
+    <div class="wrap center">
+      <span class="eyebrow">Você sente que</span>
+      <h2 style="margin-top: 12px;">Sinais que merecem atenção</h2>
+      <div class="signals" style="text-align: left;">
+        <div class="signal">
+          <div class="ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M4 20h16M6 20l2-12h8l2 12M9 8a3 3 0 0 1 6 0"></path>
+            </svg>
+          </div>
+          Faz tudo certo e não consegue emagrecer
+        </div>
+        <div class="signal">
+          <div class="ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M9 10h.01M15 10h.01M9 15h6"></path>
+            </svg>
+          </div>
+          Vive cansada(o) sem entender o motivo
+        </div>
+        <div class="signal">
+          <div class="ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"></path>
+            </svg>
+          </div>
+          Seus hormônios parecem desregulados
+        </div>
+        <div class="signal">
+          <div class="ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"></path>
+            </svg>
+          </div>
+          A menopausa está afetando sua qualidade de vida
+        </div>
+      </div>
+      <p class="quote">
+        Pode não ser falta de disciplina. Pode ser um desequilíbrio hormonal ou metabólico.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Áreas de atuação -->
+  <section class="section sand" id="areas">
+    <div class="wrap center">
+      <span class="eyebrow">Áreas de atuação</span>
+      <h2 style="margin-top: 12px;">Endocrinologia &amp; Metabologia</h2>
+      <p class="lead" style="max-width: 720px; margin: 14px auto 0;">
+        Cada paciente recebe um acompanhamento médico individualizado, baseado em diagnóstico preciso e estratégias personalizadas.
+      </p>
+      <div class="areas" style="text-align: left;">
+        <CardArea
+          title="Obesidade"
+          description="Investigação metabólica e acompanhamento individualizado"
+          href="/obesidade"
+        />
+        <CardArea
+          title="Diabetes"
+          description="Controle glicêmico e prevenção de complicações"
+          href="/diabetes"
+        />
+        <CardArea
+          title="Distúrbios da tireoide"
+          description="Diagnóstico e tratamento de hipo e hipertireoidismo"
+          href="/tireoide"
+        />
+        <CardArea
+          title="Menopausa"
+          description="Manejo hormonal e qualidade de vida"
+          href="/menopausa"
+        />
+        <CardArea
+          title="Dislipidemia"
+          description="Controle de colesterol baseado em evidências"
+          href="/colesterol"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Tratamento baseado em ciência (faixa escura) -->
+  <section class="section band">
+    <div class="wrap center">
+      <span class="eyebrow" style="color: var(--sand-5);">Abordagem</span>
+      <h2 style="margin-top: 12px;">Tratamento baseado em ciência</h2>
+      <p class="lead" style="color: var(--sand-4); margin-top: 12px;">
+        Aqui não trabalhamos com promessas rápidas. Saúde tratada com responsabilidade.
+      </p>
+      <div class="grid4" style="text-align: left;">
+        <div class="item">
+          Diagnóstico correto
+          <small>Investigação profunda da causa antes de qualquer prescrição.</small>
+        </div>
+        <div class="item">
+          Tratamento baseado em evidência
+          <small>Diretrizes médicas comprovadas pela SBEM e literatura global.</small>
+        </div>
+        <div class="item">
+          Acompanhamento contínuo
+          <small>Cuidado regular para avaliar resposta e sustentabilidade.</small>
+        </div>
+        <div class="item">
+          Segurança médica
+          <small>Risco controlado e proteção da sua longevidade em primeiro lugar.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Atendimentos não realizados -->
+  <section class="section">
+    <div class="wrap center">
+      <h2>Atendimentos não realizados</h2>
+      <p class="lead" style="margin-top: 12px;">
+        Atuação ética, responsável e focada na sua saúde integral.
+      </p>
+      <div class="nots" style="text-align: left;">
+        <div class="not">
+          <h3>Não atende criança e adolescente</h3>
+          <p>Atendimento exclusivo para adultos (a partir de 18 anos).</p>
+        </div>
+        <div class="not">
+          <h3>Não realiza tratamento hormonal com fins estéticos</h3>
+          <p>O foco é a saúde, prevenção e o equilíbrio fisiológico, não a estética rápida.</p>
+        </div>
+        <div class="not">
+          <h3>Não atende por plano de saúde</h3>
+          <p>Atendimentos realizados somente na modalidade particular.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. A especialista -->
+  <section class="section sand about" id="sobre">
+    <div class="wrap">
+      <div class="photo">
+        <span>Foto da Dra. no consultório</span>
+      </div>
+      <div>
+        <span class="eyebrow">A especialista</span>
+        <h2 style="margin-top: 12px;">Dra. Ana Carolina Mamede</h2>
+        <p class="crm" style="color: var(--rose); margin-top: 8px; font-weight: 500;">
+          CRM-ES 22.237 · RQE 15.266
+        </p>
+        <ul>
+          <li>Faculdade de Medicina — UNIPAC, Juiz de Fora</li>
+          <li>Residência de Clínica Médica — Hospital e Maternidade Therezinha de Jesus, Juiz de Fora</li>
+          <li>Especialização em Endocrinologia e Metabologia — Santa Casa de Belo Horizonte</li>
+        </ul>
+        <div class="cred">
+          <b>Título de Especialista</b><br />
+          Endocrinologia e Metabologia pela Sociedade Brasileira de Endocrinologia e Metabologia (SBEM)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Como agendar sua consulta -->
+  <section class="section">
+    <div class="wrap center">
+      <span class="eyebrow">Modalidades de atendimento</span>
+      <h2 style="margin-top: 12px;">Como agendar sua consulta</h2>
+      <div class="modes" style="text-align: left;">
+        <div class="mode">
+          <h3>Atendimento presencial</h3>
+          <p class="muted">Consultas realizadas em consultório em Guarapari, Espírito Santo.</p>
+          <ul>
+            <li>Consultório com acolhimento e privacidade</li>
+            <li>{SITE_INFO.address}</li>
+            <li>Recebe pacientes de Vila Velha, Vitória e região</li>
+          </ul>
+          <BotaoWhatsApp originKey="home" text="Agendar presencial" className="btn" />
+        </div>
+
+        <div class="mode online">
+          <h3>Consulta online</h3>
+          <p>Telemedicina para todo o Brasil</p>
+          <ul>
+            <li>Mora em outra cidade ou estado</li>
+            <li>Tem rotina corrida e precisa de praticidade</li>
+            <li>Busca acompanhamento especializado em endocrinologia</li>
+          </ul>
+          <a class="btn" href="/consulta-online">Ver como funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Material gratuito (banner) -->
+  <section class="section sand" style="padding-top: 0; background: none;">
+    <div class="wrap">
+      <BannerMaterial />
+    </div>
+  </section>
+
+  <!-- 9. Blog -->
+  <section class="section sand">
+    <div class="wrap">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="eyebrow">Blog <span class="tag-new">Novo</span></span>
+          <h2 style="margin-top: 12px;">Conteúdo para entender o seu corpo</h2>
+        </div>
+        <a class="btn ghost" href="/blog">Ver todos os artigos</a>
+      </div>
+
+      <div class="posts">
+        {recentPosts.map((post) => (
+          <CardPost
+            title={post.data.title}
+            category={post.data.category}
+            description={post.data.description}
+            readingTime={post.data.readingTime}
+            href={`/blog/${post.id}`}
+            image={post.data.image}
+            reviewedBy={post.data.reviewedBy}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Perguntas frequentes -->
+  <section class="section">
+    <div class="wrap center">
+      <FAQ
+        eyebrow="Dúvidas frequentes"
+        title="Perguntas frequentes"
+        items={faqHome}
+      />
+    </div>
+  </section>
+
+  <!-- 11. Chamada final -->
+  <section class="section final">
+    <div class="wrap">
+      <h2>Seu corpo não está contra você. Ele precisa de compreensão.</h2>
+      <p class="lead">
+        A endocrinologia pode ajudar a entender o que está acontecendo com seu metabolismo e direcionar o tratamento adequado.
+      </p>
+      <BotaoWhatsApp originKey="home" text="Agende sua consulta" className="btn" />
+    </div>
+  </section>
+</BaseLayout>

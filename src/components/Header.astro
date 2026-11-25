@@ -1,0 +1,112 @@
+---
+import { getWhatsAppUrl } from '../lib/constants';
+
+interface Props {
+  currentPath?: string;
+  waOrigin?: string;
+}
+
+const { currentPath = '/', waOrigin = 'default' } = Astro.props;
+
+const navItems = [
+  { label: 'Início', href: '/' },
+  { label: 'A Dra.', href: '/sobre' },
+  { label: 'Áreas de atuação', href: '/areas' },
+  { label: 'Consulta online', href: '/consulta-online' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Material gratuito', href: '/material-gratuito' },
+  { label: 'Contato', href: '/contato' },
+];
+
+const waLink = getWhatsAppUrl(waOrigin);
+---
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Dra. Ana Carolina Mamede - Página inicial">
+      <span class="n">Ana Carolina Mamede</span>
+      <span class="s">Endocrinologia &amp; Metabologia</span>
+    </a>
+
+    <nav class="main" aria-label="Menu principal">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+        return (
+          <a href={item.href} class={isActive ? 'on' : ''}>
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <a class="btn js-wa-trigger" href={waLink} target="_blank" rel="noopener noreferrer" data-origin="header">
+      Agendar consulta
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-header">
+      <div class="logo">
+        <span class="n" style="font-size:18px;">Ana Carolina Mamede</span>
+        <span class="s" style="font-size:9px;">Endocrinologia &amp; Metabologia</span>
+      </div>
+      <button class="mobile-nav-close" id="menuClose" aria-label="Fechar menu">&times;</button>
+    </div>
+
+    <nav class="mobile-nav-links" aria-label="Menu mobile">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+        return (
+          <a href={item.href} class={isActive ? 'on' : ''}>
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:12px;">
+      <a class="btn js-wa-trigger" style="width:100%; justify-content:center;" href={waLink} target="_blank" rel="noopener noreferrer" data-origin="mobile-menu">
+        Agendar consulta
+      </a>
+      <p style="font-size:12px; color:var(--muted); text-align:center;">
+        CRM-ES 22.237 · RQE 15.266
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('menuToggle');
+  const closeBtn = document.getElementById('menuClose');
+  const mobileNav = document.getElementById('mobileNav');
+
+  function openMenu() {
+    mobileNav?.classList.add('open');
+    mobileNav?.setAttribute('aria-hidden', 'false');
+    toggleBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileNav?.classList.remove('open');
+    mobileNav?.setAttribute('aria-hidden', 'true');
+    toggleBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  mobileNav?.addEventListener('click', (e) => {
+    if (e.target === mobileNav) closeMenu();
+  });
+</script>

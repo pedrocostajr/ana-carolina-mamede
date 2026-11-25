@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_INFO } from '../lib/constants';
+---
+<BaseLayout
+  title="Guia Gratuito Metabolismo em Equilíbrio | Dra. Ana Carolina Mamede"
+  description="Baixe o guia gratuito com sinais, exames e checklist para a sua consulta com endocrinologista. Dra. Ana Carolina Mamede."
+  canonical={`${SITE_INFO.domain}/material-gratuito`}
+  waOrigin="material-gratuito"
+>
+  <!-- Hero Escuro com Formulário -->
+  <section class="lp-hero">
+    <div class="wrap lp-grid">
+      <div>
+        <span class="eyebrow">Material gratuito</span>
+        <h1 style="margin: 16px 0 20px;">Guia Metabolismo em Equilíbrio</h1>
+        <p class="lead">
+          Sinais que merecem atenção, os exames mais comuns na avaliação endocrinológica e as perguntas certas para levar à sua consulta médica.
+        </p>
+
+        <div style="display: flex; gap: 28px; align-items: center; margin-top: 36px; flex-wrap: wrap;">
+          <div class="ebook" style="max-width: 170px; padding: 20px 16px; background: linear-gradient(160deg, var(--sand-3), var(--sand-5)); color: var(--brown);">
+            <span class="k" style="color: var(--brown-2);">Guia gratuito</span>
+            <span class="t" style="font-size: 17px; color: var(--brown);">Metabolismo em equilíbrio</span>
+            <span class="a" style="color: var(--brown-2);">Dra. Ana Carolina</span>
+          </div>
+
+          <ul style="list-style: none; display: grid; gap: 14px; color: var(--sand-3); font-size: 15.5px;">
+            <li style="display: flex; gap: 10px; align-items: center;">
+              <span style="color: var(--sand-5); font-weight: bold;">✓</span>
+              Sinais de alerta hormonais e metabólicos
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center;">
+              <span style="color: var(--sand-5); font-weight: bold;">✓</span>
+              O que significam os principais exames
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center;">
+              <span style="color: var(--sand-5); font-weight: bold;">✓</span>
+              Checklist prático para a sua consulta
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Formulário de Captura com LGPD -->
+      <div class="form">
+        <h3>Receba o guia por e-mail</h3>
+        <p class="sub">Preencha abaixo e o material chega na hora para você.</p>
+
+        <form id="leadForm">
+          <input type="hidden" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" name="origem" id="origem" value="landing-material-gratuito" />
+
+          <div class="field">
+            <label for="nome">Nome completo *</label>
+            <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" />
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail principal *</label>
+            <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com" />
+          </div>
+
+          <div class="field">
+            <label for="whatsapp">WhatsApp *</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000" maxlength="15" />
+          </div>
+
+          <div class="field">
+            <label for="cidade">Cidade / Estado *</label>
+            <input type="text" id="cidade" name="cidade" required placeholder="Ex.: Guarapari / ES ou São Paulo / SP" />
+          </div>
+
+          <div class="field">
+            <label for="tema">Qual tema mais te interessa?</label>
+            <select id="tema" name="tema">
+              <option value="">Selecione um tema de interesse</option>
+              <option value="Emagrecimento e obesidade">Emagrecimento e obesidade</option>
+              <option value="Diabetes e glicemia">Diabetes e glicemia</option>
+              <option value="Tireoide">Distúrbios da tireoide</option>
+              <option value="Menopausa">Menopausa e metabolismo</option>
+              <option value="Colesterol">Colesterol e triglicerídeos</option>
+              <option value="Outro">Outro interesse</option>
+            </select>
+          </div>
+
+          <div class="check">
+            <input type="checkbox" id="consentimentoLGPD" name="consentimentoLGPD" required />
+            <label for="consentimentoLGPD">
+              Concordo em receber o material e conteúdos da Dra. Ana Carolina por e-mail e WhatsApp, conforme a <a href="/politica-de-privacidade" target="_blank" style="text-decoration: underline; color: var(--brown-2);">Política de Privacidade (LGPD)</a>.
+            </label>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn dark" style="width: 100%; justify-content: center;">
+            Quero receber o guia
+          </button>
+
+          <p class="safe">
+            🔒 Seus dados estão seguros. Não realizamos envio de spam nem compartilhamos suas informações.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que você vai encontrar -->
+  <section class="section">
+    <div class="wrap center">
+      <span class="eyebrow">Conteúdo do material</span>
+      <h2 style="margin-top: 12px;">Um guia para entender melhor o seu metabolismo</h2>
+      <div class="learn" style="text-align: left;">
+        <div class="it">
+          <b>Sinais do corpo</b>
+          <p>Cansaço diário, dificuldade no controle do peso, oscilações no sono e sintomas que merecem investigação.</p>
+        </div>
+        <div class="it">
+          <b>Exames laboratoriais explicados</b>
+          <p>Para que servem glicemia, hemoglobina glicada, TSH, T4 livre, perfil lipídico e como compreendê-los.</p>
+        </div>
+        <div class="it">
+          <b>Checklist da sua consulta</b>
+          <p>O que separar, como organizar seus exames anteriores e as perguntas certas para fazer ao médico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Masking WhatsApp
+  const waInput = document.getElementById('whatsapp') as HTMLInputElement | null;
+  waInput?.addEventListener('input', (e) => {
+    let v = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length > 6) {
+      v = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+    } else if (v.length > 2) {
+      v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+    } else if (v.length > 0) {
+      v = `(${v}`;
+    }
+    (e.target as HTMLInputElement).value = v;
+  });
+
+  // Capture UTM parameters
+  const params = new URLSearchParams(window.location.search);
+  const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  utmFields.forEach((field) => {
+    const el = document.getElementById(field) as HTMLInputElement | null;
+    if (el && params.get(field)) {
+      el.value = params.get(field)!;
+    }
+  });
+
+  // Handle form submission
+  const form = document.getElementById('leadForm') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Enviando material...';
+    }
+
+    const formData = new FormData(form);
+    const payload = {
+      nome: formData.get('nome'),
+      email: formData.get('email'),
+      whatsapp: formData.get('whatsapp'),
+      cidade: formData.get('cidade'),
+      tema: formData.get('tema'),
+      consentimentoLGPD: formData.get('consentimentoLGPD') === 'on',
+      utm_source: formData.get('utm_source'),
+      utm_medium: formData.get('utm_medium'),
+      utm_campaign: formData.get('utm_campaign'),
+      utm_content: formData.get('utm_content'),
+      origem: formData.get('origem')
+    };
+
+    // Save lead info locally for download verification
+    sessionStorage.setItem('lead_cadastrado', JSON.stringify({ email: payload.email, nome: payload.nome }));
+
+    // Send to endpoint or webhook
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (_) {}
+
+    // Dispatch GA4 conversion event
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'generate_lead', {
+        event_category: 'Lead',
+        event_label: payload.tema || 'Geral',
+        value: 1
+      });
+    }
+
+    // Redirect to thank you page
+    window.location.href = '/obrigado';
+  });
+</script>

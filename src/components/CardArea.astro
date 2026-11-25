@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+}
+
+const { title, description, href } = Astro.props;
+---
+<a class="area" href={href} aria-label={`Saiba mais sobre ${title}`}>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <span class="more">Saiba mais →</span>
+</a>

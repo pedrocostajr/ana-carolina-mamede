@@ -1,0 +1,72 @@
+---
+import AreaLayout from '../layouts/AreaLayout.astro';
+
+const introParagraphs = [
+  'A transição para a menopausa (climatério) representa uma etapa biológica natural na vida da mulher, mas a diminuição progressiva dos estrogênios traz impactos profundos sobre a composição corporal, a distribuição de gordura, o metabolismo ósseo e a saúde vascular.',
+  'O acompanhamento com a endocrinologista Dra. Ana Carolina Mamede visa proporcionar alívio de sintomas desconfortáveis, proteção da densidade óssea e prevenção cardiovascular, avaliando com rigor científico as indicações e contraindicações da Terapia de Reposição Hormonal (TRH).'
+];
+
+const signals = [
+  'Ondas de calor repentinas no peito e rosto (fogachos) e suores noturnos',
+  'Acúmulo repentino de gordura na região abdominal sem alterações na dieta',
+  'Insônia frequente, despertar precoce e irritabilidade ou oscilações de humor',
+  'Queda de libido, ressecamento vaginal e dores osteoarticulares'
+];
+
+const evaluationSteps = [
+  {
+    title: 'Avaliação da Janela de Oportunidade',
+    desc: 'Análise criteriosa de tempo desde a última menstruação e idade para determinar segurança da TRH.'
+  },
+  {
+    title: 'Rastreio de Risco Cardiovascular e Mamário',
+    desc: 'Exames laboratoriais de perfil lipídico, mamografia, ultrassonografia transvaginal e aferição da pressão arterial.'
+  },
+  {
+    title: 'Avaliação da Saúde Óssea',
+    desc: 'Solicitação e análise de Densitometria Óssea para prevenção ativa de osteopenia e osteoporose.'
+  },
+  {
+    title: 'Individualização Terapêutica',
+    desc: 'Escolha da melhor via de administração (transdérmica, oral) e doses hormonais bioidênticas mínimas eficazes.'
+  }
+];
+
+const monitoringPoints = [
+  'Reavaliações clínicas periódicas para acompanhar o alívio sintomático e segurança terapêutica.',
+  'Estratégias nutricionais e metabólicas para frear a perda de massa muscular (sarcopenia).',
+  'Vigilância constante dos exames ginecológicos e metabólicos de controle.',
+  'Decisão terapêutica compartilhada, respeitando as preferências e valores da paciente.'
+];
+
+const faqItems = [
+  {
+    question: 'A reposição hormonal na menopausa é segura?',
+    answer: 'Sim, quando indicada dentro da chamada "janela de oportunidade" (mulheres com menos de 60 anos ou menos de 10 anos de menopausa) e na ausência de contraindicações formais como histórico de câncer de mama ou eventos tromboembólicos prévios.'
+  },
+  {
+    question: 'A menopausa faz o metabolismo ficar mais lento?',
+    answer: 'Sim. A redução do estrogênio altera a regulação da taxa metabólica e favorece o acúmulo de gordura visceral (abdominal), além de acelerar a perda de massa muscular se não houver estímulo físico adequado.'
+  },
+  {
+    question: 'Existe idade limite para iniciar a reposição hormonal?',
+    answer: 'Geralmente não se recomenda iniciar a terapia hormonal em mulheres que já estão na pós-menopausa há mais de 10 anos ou acima dos 60 anos sem uso prévio, devido ao aumento de riscos cardiovasculares.'
+  },
+  {
+    question: 'A Dra. Ana Carolina prescreve implantes hormonais (chips da beleza)?',
+    answer: 'Não. Os chamados "chips da beleza" ou implantes de gestrinona com fins estéticos não têm respaldo da SBEM nem do Conselho Federal de Medicina. Trabalhamos exclusivamente com terapias hormonais regulamentadas e aprovadas para saúde e qualidade de vida.'
+  }
+];
+---
+<AreaLayout
+  title="Menopausa e Metabolismo em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Acompanhamento especializado do climatério e menopausa com endocrinologista. Reposição hormonal ética e segura em Guarapari/ES e online para o Brasil."
+  areaName="Menopausa"
+  slug="menopausa"
+  h1="Menopausa: acompanhamento com endocrinologista em Guarapari/ES e online"
+  introParagraphs={introParagraphs}
+  signals={signals}
+  evaluationSteps={evaluationSteps}
+  monitoringPoints={monitoringPoints}
+  faqItems={faqItems}
+/>

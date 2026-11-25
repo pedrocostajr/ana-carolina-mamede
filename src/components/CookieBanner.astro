@@ -1,0 +1,37 @@
+---
+---
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Consentimento de cookies">
+  <p>
+    Utilizamos cookies para melhorar a experiência do usuário e analisar o tráfego do site, em conformidade com a nossa <a href="/politica-de-privacidade" style="text-decoration: underline; color: var(--brown-2);">Política de Privacidade</a>.
+  </p>
+  <div class="actions">
+    <button class="btn" id="btnAcceptCookies" style="padding: 10px 20px; font-size: 12px;">
+      Aceitar
+    </button>
+    <button class="btn ghost" id="btnRejectCookies" style="padding: 10px 20px; font-size: 12px;">
+      Recusar
+    </button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookieBanner');
+  const btnAccept = document.getElementById('btnAcceptCookies');
+  const btnReject = document.getElementById('btnRejectCookies');
+
+  const consent = localStorage.getItem('cookie_consent');
+  if (!consent && banner) {
+    banner.classList.add('visible');
+  }
+
+  function handleConsent(status: 'accepted' | 'rejected') {
+    localStorage.setItem('cookie_consent', status);
+    banner?.classList.remove('visible');
+    if (status === 'accepted') {
+      window.dispatchEvent(new CustomEvent('cookie_consent_granted'));
+    }
+  }
+
+  btnAccept?.addEventListener('click', () => handleConsent('accepted'));
+  btnReject?.addEventListener('click', () => handleConsent('rejected'));
+</script>

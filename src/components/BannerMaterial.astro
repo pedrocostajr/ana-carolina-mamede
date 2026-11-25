@@ -1,0 +1,29 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+<div class="magnet" style={compact ? 'padding: 40px 36px; border-radius: 22px;' : ''}>
+  <div class="ebook" style={compact ? 'max-width: 190px; padding: 22px 18px;' : ''}>
+    <span class="k">Material gratuito</span>
+    <span class="t" style={compact ? 'font-size: 18px;' : ''}>Metabolismo em equilíbrio</span>
+    <span class="a">Dra. Ana Carolina Mamede</span>
+  </div>
+  <div>
+    <span class="eyebrow">Material gratuito <span class="tag-new">Novo</span></span>
+    <h2 style="margin: 12px 0 14px; font-size: clamp(24px, 3.2vw, 32px);">
+      Guia: sinais, exames e o que perguntar na sua consulta
+    </h2>
+    <p class="lead" style="color: var(--brown); opacity: 0.85; margin-bottom: 26px;">
+      Um material educativo para entender melhor o seu metabolismo e chegar à consulta com as informações certas.
+    </p>
+    <a class="btn dark" href="/material-gratuito">
+      Quero receber o guia
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </svg>
+    </a>
+  </div>
+</div>

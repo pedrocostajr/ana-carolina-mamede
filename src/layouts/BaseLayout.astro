@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import Topbar from '../components/Topbar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  articleMeta?: {
+    publishDate?: string;
+    updatedDate?: string;
+    author?: string;
+    category?: string;
+  };
+  waOrigin?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  noindex,
+  ogImage,
+  ogType,
+  articleMeta,
+  waOrigin = 'default'
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      ogImage={ogImage}
+      ogType={ogType}
+      articleMeta={articleMeta}
+    />
+  </head>
+  <body>
+    <Topbar />
+    <Header currentPath={currentPath} waOrigin={waOrigin} />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer waOrigin={waOrigin} />
+    <WhatsAppFloat originKey={waOrigin} />
+    <CookieBanner />
+  </body>
+</html>

@@ -1,0 +1,72 @@
+---
+import AreaLayout from '../layouts/AreaLayout.astro';
+
+const introParagraphs = [
+  'A glândula tireoide funciona como o maestro metabólico do nosso organismo, regulando o ritmo com que as células consomem energia, a temperatura corporal, a frequência cardíaca e a clareza mental. Pequenas oscilações nos hormônios tireoidianos podem desestabilizar todo o bem-estar.',
+  'Disfunções comuns como hipotireoidismo, hipertireoidismo, tireoidite de Hashimoto e nódulos tireoidianos demandam uma avaliação endocrinológica criteriosa, que analisa não apenas números impressos no laudo, mas o quadro clínico integral do paciente.'
+];
+
+const signals = [
+  'Cansaço excessivo e persistente mesmo após noites completas de sono',
+  'Intolerância ao frio ou, ao contrário, sensação permanente de calor e suor excessivo',
+  'Queda acentuada de cabelo, pele excessivamente ressecada e unhas frágeis',
+  'Alterações de humor, lentidão de raciocínio, falhas de memória e constipação intestinal'
+];
+
+const evaluationSteps = [
+  {
+    title: 'Exame Clínico e Histórico',
+    desc: 'Investigação detalhada de sintomas sistêmicos, antecedentes familiares e histórico de autoimunidade.'
+  },
+  {
+    title: 'Dosagens Hormonais Precisas',
+    desc: 'Avaliação contextualizada de TSH, T4 livre, T3 e pesquisa de anticorpos (Anti-TPO e Anti-Tireoglobulina).'
+  },
+  {
+    title: 'Avaliação Morfológica por Imagem',
+    desc: 'Indicação e leitura crítica de ultrassonografia com Doppler para rastreio e classificação de nódulos (ACR-TIRADS).'
+  },
+  {
+    title: 'Ajuste Fino da Terapêutica',
+    desc: 'Prescrição personalizada da dose exata de levotiroxina, com orientações precisas sobre horários e interações alimentares.'
+  }
+];
+
+const monitoringPoints = [
+  'Controle laboratorial regular para evitar subdosagem ou superdosagem de hormônios tireoidianos.',
+  'Acompanhamento ultrassonográfico periódico para nódulos que necessitam de vigilância ativa.',
+  'Manejo de sintomas residuais que muitas vezes persistem apesar do TSH normalizado.',
+  'Cuidado especial na fase pré-concepcional e durante a gestação.'
+];
+
+const faqItems = [
+  {
+    question: 'Meu TSH veio alterado, mas o T4 livre está normal. O que significa?',
+    answer: 'Esse padrão laboratorial costuma indicar hipotireoidismo ou hipertireoidismo subclínico. A decisão de iniciar medicação depende de fatores como idade, presença de sintomas, níveis de anticorpos e risco cardiovascular.'
+  },
+  {
+    question: 'Todo nódulo na tireoide precisa ser puncionado ou operado?',
+    answer: 'Não. A imensa maioria dos nódulos tireoidianos (mais de 90%) é benigna. A biópsia por punção aspirativa por agulha fina (PAAF) só é indicada se o nódulo apresentar características suspeitas ao ultrassom ou ultrapassar dimensões específicas.'
+  },
+  {
+    question: 'O hipotireoidismo engorda muito?',
+    answer: 'O hipotireoidismo não tratado reduz a taxa metabólica e costuma provocar retenção hídrica leve a moderada, gerando um ganho de 2 a 4 kg. Grandes aumentos de peso geralmente decorrem de outros fatores metabólicos associados que também precisam ser investigados.'
+  },
+  {
+    question: 'Como tomar a levotiroxina corretamente?',
+    answer: 'O comprimido deve ser ingerido em jejum, com água pura, ao menos 30 a 60 minutos antes do café da manhã ou de qualquer outro medicamento, suplemento ou café puro, garantindo sua absorção plena.'
+  }
+];
+---
+<AreaLayout
+  title="Endocrinologista para Tireoide em Guarapari/ES e Online | Dra. Ana Carolina Mamede"
+  description="Diagnóstico e tratamento de hipotireoidismo, tireoidite de Hashimoto e nódulos tireoidianos em Guarapari/ES e online para todo o Brasil. CRM-ES 22.237."
+  areaName="Tireoide"
+  slug="tireoide"
+  h1="Endocrinologista para tireoide em Guarapari/ES e online"
+  introParagraphs={introParagraphs}
+  signals={signals}
+  evaluationSteps={evaluationSteps}
+  monitoringPoints={monitoringPoints}
+  faqItems={faqItems}
+/>

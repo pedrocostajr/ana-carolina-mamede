@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { SITE_INFO } from '../lib/constants';
+---
+<BaseLayout
+  title="Política de Privacidade e Proteção de Dados (LGPD) | Dra. Ana Carolina Mamede"
+  description="Conheça a política de privacidade e proteção de dados da Dra. Ana Carolina Mamede, em total conformidade com a LGPD (Lei nº 13.709/2018)."
+  canonical={`${SITE_INFO.domain}/politica-de-privacidade`}
+  waOrigin="politica"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb items={[{ label: 'Política de Privacidade' }]} />
+      <span class="eyebrow">LGPD · Lei nº 13.709/2018</span>
+      <h1 style="margin: 16px 0 20px;">Política de Privacidade</h1>
+      <p class="lead" style="max-width: 760px;">
+        Nosso compromisso inegociável com a transparência, privacidade e proteção dos seus dados pessoais.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="prose" style="max-width: 860px; margin: 0 auto;">
+        <p>
+          Esta Política de Privacidade descreve de que forma o consultório da <strong>Dra. Ana Carolina Mamede</strong> (CRM-ES 22.237, RQE 15.266), com sede profissional em Guarapari/ES, coleta, utiliza, armazena e protege os dados pessoais fornecidos por você ao navegar no site <code>carolinamamede.com.br</code> ou ao preencher formulários de captura de materiais gratuitos e agendamento de consultas.
+        </p>
+
+        <h2>1. Quais dados coletamos e por qual finalidade</h2>
+        <p>Coletamos exclusivamente as informações estritamente necessárias para a prestação dos nossos serviços informativos e de agendamento:</p>
+        <ul>
+          <li><strong>Formulário de Material Gratuito:</strong> Nome completo, endereço de e-mail, número de WhatsApp, cidade/estado e tema de interesse de saúde. A finalidade exclusiva é o envio do guia solicitado e de sequências educativas sobre saúde metabólica e endocrinologia.</li>
+          <li><strong>Dados de Navegação e Cookies:</strong> Endereço IP anonimizado, páginas visitadas, tempo de permanência e parâmetros UTM de campanhas (ex.: Google Ads, Meta Ads). A finalidade é a análise estatística do tráfego e melhoria da experiência de navegação através do Google Analytics 4.</li>
+          <li><strong>Dados de Saúde:</strong> Não solicitamos diagnósticos, exames médicos ou histórico clínico detalhado por meio de formulários abertos no site. Informações clínicas sensíveis são compartilhadas exclusivamente durante o ato médico da consulta, sob total sigilo profissional e proteção pelo Código de Ética Médica.</li>
+        </ul>
+
+        <h2>2. Base legal para o tratamento dos dados</h2>
+        <p>
+          O tratamento dos seus dados fundamenta-se nas hipóteses legais previstas no art. 7º da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018):
+        </p>
+        <ul>
+          <li><strong>Consentimento (art. 7º, I):</strong> Ao assinalar a caixa de concordância nos formulários, você consente expressamente com o recebimento de materiais educativos.</li>
+          <li><strong>Procedimentos preliminares relacionados a contrato (art. 7º, V):</strong> Para o atendimento às solicitações de agendamento de consulta médica.</li>
+          <li><strong>Legítimo interesse (art. 7º, IX):</strong> Para melhoria contínua das funcionalidades do site e prevenção contra fraudes.</li>
+        </ul>
+
+        <h2>3. Compartilhamento seguro de dados</h2>
+        <p>
+          Seus dados pessoais jamais são vendidos, cedidos ou compartilhados com terceiros para fins comerciais de qualquer natureza. O compartilhamento ocorre unicamente com fornecedores de tecnologia estritamente necessários para a operação do site:
+        </p>
+        <ul>
+          <li>Plataforma de automação e envio de e-mails (ex.: Brevo / RD Station / Mailchimp), que atua como operadora dos dados sob termos rigorosos de sigilo;</li>
+          <li>Serviço de análise de métricas (Google Analytics), com IP anonimizado e cookies geridos pelo seu consentimento.</li>
+        </ul>
+
+        <h2>4. Seus direitos como titular de dados</h2>
+        <p>
+          Em conformidade com o artigo 18 da LGPD, você tem direito a, a qualquer momento e mediante simples requisição:
+        </p>
+        <ul>
+          <li>Confirmar a existência de tratamento dos seus dados;</li>
+          <li>Acessar seus dados pessoais cadastrados;</li>
+          <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+          <li>Revogar seu consentimento e solicitar a exclusão definitiva dos seus dados dos nossos registros de e-mail;</li>
+          <li>Descadastrar-se de qualquer comunicação através do link presente no rodapé de todos os nossos e-mails.</li>
+        </ul>
+
+        <h2>5. Canal de contato e encarregado de dados (DPO)</h2>
+        <p>
+          Para exercer seus direitos de titular, solicitar alterações ou tirar dúvidas sobre esta política, entre em contato diretamente com nossa equipe pelo WhatsApp oficial <strong>(27) 99995-3553</strong> ou pelo e-mail <code>contato@carolinamamede.com.br</code> [PREENCHER].
+        </p>
+
+        <p class="note" style="margin-top: 40px;">
+          Última atualização desta política: Outubro de 2026. Reservamo-nos o direito de atualizar este documento periodicamente para refletir avanços técnicos ou exigências legais.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

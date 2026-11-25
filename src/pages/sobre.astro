@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import BannerMaterial from '../components/BannerMaterial.astro';
+import { SITE_INFO } from '../lib/constants';
+---
+<BaseLayout
+  title="Sobre a Especialista | Dra. Ana Carolina Mamede — Endocrinologista"
+  description="Conheça a trajetória da Dra. Ana Carolina Mamede, endocrinologista e metabologista com Título de Especialista pela SBEM. CRM-ES 22.237 · RQE 15.266."
+  canonical={`${SITE_INFO.domain}/sobre`}
+  waOrigin="sobre"
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb items={[{ label: 'A Dra.' }]} />
+      <span class="eyebrow">A Especialista</span>
+      <h1 style="margin: 16px 0 20px;">Dra. Ana Carolina Mamede</h1>
+      <p class="lead" style="max-width: 760px;">
+        Endocrinologia e metabologia exercidas com rigor ético, escuta cuidadosa e tratamentos respaldados pela melhor ciência médica.
+      </p>
+    </div>
+  </section>
+
+  <!-- Seção Sobre Completa -->
+  <section class="section about" style="padding-top: 64px;">
+    <div class="wrap">
+      <div class="photo">
+        <span>Foto da Dra. no consultório</span>
+      </div>
+
+      <div>
+        <span class="eyebrow">Formação Médica &amp; Trajetória</span>
+        <h2 style="margin-top: 12px;">Compromisso com o cuidado integral</h2>
+        <p class="crm" style="color: var(--rose); margin-top: 8px; font-weight: 500; font-size: 16px;">
+          {SITE_INFO.fullCredentials}
+        </p>
+
+        <p style="margin-top: 20px; line-height: 1.7; color: var(--ink);">
+          A Dra. Ana Carolina Mamede dedica sua prática clínica à investigação detalhada das desordens hormonais e do metabolismo. Acredita que a saúde duradoura não é alcançada com dietas restritivas radicais ou promessas rápidas, mas sim por meio da compreensão do organismo de cada paciente, atuando na causa raiz dos sintomas.
+        </p>
+
+        <ul style="margin: 28px 0;">
+          <li>
+            <strong>Faculdade de Medicina:</strong> Universidade Presidente Antônio Carlos (UNIPAC), Juiz de Fora/MG
+          </li>
+          <li>
+            <strong>Residência Médica em Clínica Médica:</strong> Hospital e Maternidade Therezinha de Jesus, Juiz de Fora/MG
+          </li>
+          <li>
+            <strong>Especialização em Endocrinologia e Metabologia:</strong> Santa Casa de Misericórdia de Belo Horizonte/MG
+          </li>
+        </ul>
+
+        <div class="cred" style="border: 1px solid var(--sand-3); margin-top: 24px;">
+          <b style="font-size: 16px;">Título de Especialista</b><br />
+          Endocrinologia e Metabologia com aprovação na prova de título oficial da <strong>Sociedade Brasileira de Endocrinologia e Metabologia (SBEM)</strong> e Associação Médica Brasileira (AMB).
+        </div>
+
+        <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+          <BotaoWhatsApp originKey="sobre" text="Agendar consulta com a Dra." className="btn" />
+          <a class="btn ghost" href="/consulta-online">Conhecer a consulta online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abordagem Científica -->
+  <section class="section band">
+    <div class="wrap center">
+      <span class="eyebrow" style="color: var(--sand-5);">Abordagem</span>
+      <h2 style="margin-top: 12px;">Tratamento baseado em ciência e respeito</h2>
+      <p class="lead" style="color: var(--sand-4); margin-top: 12px; max-width: 720px; margin-left: auto; margin-right: auto;">
+        Nosso trabalho é fundamentado na ética médica e nas diretrizes internacionais mais conceituadas.
+      </p>
+      <div class="grid4" style="text-align: left; margin-top: 40px;">
+        <div class="item">
+          Investigação Aprofundada
+          <small>Análise ampla de hábitos de vida, antecedentes familiares e histórico de saúde prévio.</small>
+        </div>
+        <div class="item">
+          Metas Realistas
+          <small>Planos clínicos pensados para a sua vida real, sem restrições insustentáveis.</small>
+        </div>
+        <div class="item">
+          Prescrição Segura
+          <small>Medicações aprovadas por ensaios clínicos rigorosos e com segurança comprovada.</small>
+        </div>
+        <div class="item">
+          Acolhimento Humanizado
+          <small>Espaço de diálogo aberto, escuta ativa e empatia em cada momento da consulta.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atendimentos não realizados -->
+  <section class="section">
+    <div class="wrap center">
+      <span class="eyebrow">Transparência Ética</span>
+      <h2 style="margin-top: 12px;">Atendimentos não realizados</h2>
+      <p class="lead" style="margin-top: 12px; max-width: 680px; margin-left: auto; margin-right: auto;">
+        Em observância ao Código de Ética Médica e às normas do Conselho Federal de Medicina (CFM):
+      </p>
+      <div class="nots" style="text-align: left;">
+        <div class="not">
+          <h3>Não atende criança e adolescente</h3>
+          <p>O atendimento é exclusivamente voltado para o público adulto (a partir de 18 anos).</p>
+        </div>
+        <div class="not">
+          <h3>Não realiza tratamento com fins estéticos</h3>
+          <p>Não prescrevemos terapias hormonais, esteroides anabolizantes ou implantes com finalidade meramente estética.</p>
+        </div>
+        <div class="not">
+          <h3>Não atende por plano de saúde</h3>
+          <p>Todas as consultas são particulares, garantindo pontualidade e dedicação total de tempo ao paciente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Material -->
+  <section class="section sand" style="padding-top: 0; background: none;">
+    <div class="wrap">
+      <BannerMaterial />
+    </div>
+  </section>
+</BaseLayout>

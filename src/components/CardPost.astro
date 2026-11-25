@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  description: string;
+  readingTime?: number;
+  href: string;
+  image?: string;
+  reviewedBy?: string;
+}
+
+const {
+  title,
+  category,
+  description,
+  readingTime = 5,
+  href,
+  image,
+  reviewedBy = 'Dra. Ana Carolina Mamede'
+} = Astro.props;
+---
+<article class="post">
+  <a href={href} class="img-ph" aria-label={title}>
+    {image ? (
+      <img src={image} alt={title} loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+    ) : (
+      <span>{category} · Artigo</span>
+    )}
+  </a>
+  <div class="b">
+    <span class="cat">{category}</span>
+    <a href={href}>
+      <h3>{title}</h3>
+    </a>
+    <p>{description}</p>
+    <span class="meta">{readingTime} min de leitura · Revisado pela {reviewedBy}</span>
+  </div>
+</article>

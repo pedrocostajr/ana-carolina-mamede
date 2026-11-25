@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CardArea from '../components/CardArea.astro';
+import BannerMaterial from '../components/BannerMaterial.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { SITE_INFO } from '../lib/constants';
+
+const areas = [
+  {
+    title: 'Obesidade',
+    description: 'Investigação metabólica aprofundada, manejo da fome e saciedade, e estratégias médicas sustentáveis para perda e manutenção de peso.',
+    href: '/obesidade'
+  },
+  {
+    title: 'Diabetes e Pré-diabetes',
+    description: 'Controle glicêmico seguro, prevenção ativa de complicações cardiovasculares e renais, e terapias medicamentosas modernas.',
+    href: '/diabetes'
+  },
+  {
+    title: 'Distúrbios da Tireoide',
+    description: 'Diagnóstico e tratamento de hipotireoidismo, tireoidite de Hashimoto, hipertireoidismo e avaliação ultrassonográfica de nódulos.',
+    href: '/tireoide'
+  },
+  {
+    title: 'Menopausa e Climatério',
+    description: 'Manejo de sintomas como ondas de calor, alterações do sono e acúmulo de gordura abdominal através de reposição hormonal ética e segura.',
+    href: '/menopausa'
+  },
+  {
+    title: 'Colesterol e Dislipidemia',
+    description: 'Estratificação de risco cardiovascular, manejo de hipercolesterolemia familiar e controle rigoroso de frações de LDL e triglicerídeos.',
+    href: '/colesterol'
+  }
+];
+---
+<BaseLayout
+  title="Áreas de Atuação em Endocrinologia | Dra. Ana Carolina Mamede"
+  description="Conheça as áreas de atuação da Dra. Ana Carolina Mamede: obesidade, diabetes, tireoide, menopausa e colesterol. Presencial em Guarapari/ES e online para o Brasil."
+  canonical={`${SITE_INFO.domain}/areas`}
+  waOrigin="areas"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumb items={[{ label: 'Áreas de atuação' }]} />
+      <span class="eyebrow">Endocrinologia &amp; Metabologia</span>
+      <h1 style="margin: 16px 0 20px;">Áreas de Atuação Médica</h1>
+      <p class="lead" style="max-width: 760px;">
+        A endocrinologia cuida do equilíbrio metabólico e hormonal do organismo. Cada atendimento é realizado de forma minuciosa, individualizada e fundamentada nas melhores evidências científicas.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="areas" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        {areas.map((area) => (
+          <CardArea
+            title={area.title}
+            description={area.description}
+            href={area.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section sand">
+    <div class="wrap center">
+      <span class="eyebrow">Atendimento Integral</span>
+      <h2 style="margin-top: 12px;">Precisa de acompanhamento em alguma dessas áreas?</h2>
+      <p class="lead" style="max-width: 680px; margin: 14px auto 32px;">
+        Agende sua consulta presencial em Guarapari/ES ou online por videochamada de qualquer localidade do Brasil.
+      </p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <BotaoWhatsApp originKey="areas" text="Agendar consulta" className="btn" />
+        <a class="btn ghost" href="/consulta-online">Como funciona a telemedicina</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; background: none;">
+    <div class="wrap">
+      <BannerMaterial />
+    </div>
+  </section>
+</BaseLayout>

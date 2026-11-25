@@ -1,0 +1,44 @@
+---
+import { SITE_INFO } from '../lib/constants';
+
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Início',
+      'item': SITE_INFO.domain
+    },
+    ...items.map((item, index) => ({
+      '@type': 'ListItem',
+      'position': index + 2,
+      'name': item.label,
+      ...(item.href ? { 'item': `${SITE_INFO.domain}${item.href}` } : {})
+    }))
+  ]
+};
+---
+<nav class="crumbs" aria-label="Navegação estrutural">
+  <a href="/">Início</a>
+  {items.map((item) => (
+    <>
+      <span aria-hidden="true"> › </span>
+      {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+    </>
+  ))}
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
