@@ -262,6 +262,7 @@ header.site .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 32px;
   height: 84px;
 }
 
@@ -272,6 +273,7 @@ header.site .wrap {
 }
 
 .logo .n {
+  white-space: nowrap;
   font-family: 'Cinzel', serif;
   font-size: 21px;
   color: var(--brown);
@@ -296,6 +298,7 @@ nav.main {
 
 nav.main a {
   position: relative;
+  white-space: nowrap;
   padding-bottom: 4px;
   font-weight: 400;
 }
@@ -313,6 +316,12 @@ nav.main a.on {
 header.site .btn {
   padding: 12px 22px;
   font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1320px) {
+  nav.main { gap: 20px; font-size: 14px; }
 }
 
 /* Mobile Nav Toggle */
@@ -1570,6 +1579,11 @@ footer.site .legal {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1240px) {
+  nav.main, header.site .btn { display: none; }
+  .menu-toggle { display: block; }
+}
+
 @media (max-width: 1024px) {
   .areas {
     grid-template-columns: repeat(3, 1fr);
